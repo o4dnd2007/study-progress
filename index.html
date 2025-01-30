@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#4CAF50">
+    <title>نظام تتبع الدراسة</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+    <script type="module" src="node_modules/@capacitor/core/dist/index.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>نظام تتبع الدراسة</h1>
+        </header>
+        
+        <main>
+            <div class="header">
+                <h1>متابعة التقدم في المواد</h1>
+            </div>
+            
+            <div id="subjects-container">
+                <div class="section-header">
+                    <h2>المواد الدراسية</h2>
+                    <div class="section-actions">
+                        <button id="add-subject-btn" class="primary-btn">إضافة مادة جديدة</button>
+                        <button id="toggleDeleteMode" class="danger-btn">تحديد للحذف</button>
+                        <div id="deleteActions" class="delete-actions hidden">
+                            <button id="confirmDelete" class="danger-btn">تأكيد الحذف</button>
+                            <button id="cancelDelete" class="secondary-btn cancel-delete">إلغاء التحديد</button>
+                            <span id="selectedCount" class="selected-count"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="subjects-list"></div>
+            </div>
+
+            <div id="chapters-container" class="hidden">
+                <div class="section-header">
+                    <h2 id="subject-title"></h2>
+                    <div class="section-actions">
+                        <button id="back-to-subjects" class="secondary-btn">العودة للمواد</button>
+                        <button id="add-chapter-btn" class="primary-btn">إضافة فصل جديد</button>
+                        <button id="toggleDeleteMode-chapters" class="danger-btn">تحديد للحذف</button>
+                        <div id="deleteActions-chapters" class="delete-actions hidden">
+                            <button id="confirmDelete-chapters" class="danger-btn">تأكيد الحذف</button>
+                            <button id="cancelDelete-chapters" class="secondary-btn cancel-delete">إلغاء التحديد</button>
+                            <span id="selectedCount-chapters" class="selected-count"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" id="subject-progress"></div>
+                    <span class="progress-text" id="subject-progress-text">0%</span>
+                </div>
+                <div id="chapters-list"></div>
+            </div>
+
+            <div id="topics-container" class="hidden">
+                <div class="section-header">
+                    <h2 id="chapter-title"></h2>
+                    <div class="section-actions">
+                        <button id="back-to-chapters" class="secondary-btn">العودة للفصول</button>
+                        <button id="add-topic-btn" class="primary-btn">إضافة موضوع جديد</button>
+                        <button id="toggleDeleteMode-topics" class="danger-btn">تحديد للحذف</button>
+                        <div id="deleteActions-topics" class="delete-actions hidden">
+                            <button id="confirmDelete-topics" class="danger-btn">تأكيد الحذف</button>
+                            <button id="cancelDelete-topics" class="secondary-btn cancel-delete">إلغاء التحديد</button>
+                            <span id="selectedCount-topics" class="selected-count"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" id="chapter-progress"></div>
+                    <span class="progress-text" id="chapter-progress-text">0%</span>
+                </div>
+                <div id="topics-list"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for adding new items -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <h3 id="modal-title"></h3>
+            <input type="text" id="modal-input" placeholder="اكتب الاسم هنا">
+            <div class="modal-buttons">
+                <button id="modal-save" class="primary-btn">حفظ</button>
+                <button id="modal-cancel" class="secondary-btn cancel-delete">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة الحذف المتعدد -->
+    <div id="deleteModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>حذف عناصر</h2>
+            <div class="delete-options">
+                <div class="modal-input-group">
+                    <label>اختر نوع العنصر:</label>
+                    <select id="deleteType" class="modal-select">
+                        <option value="subject">مادة</option>
+                        <option value="chapter">فصل</option>
+                        <option value="topic">موضوع</option>
+                    </select>
+                </div>
+                <div id="subjectSelectGroup" class="modal-input-group">
+                    <label>اختر المادة:</label>
+                    <select id="subjectSelect" class="modal-select"></select>
+                </div>
+                <div id="chapterSelectGroup" class="modal-input-group hidden">
+                    <label>اختر الفصل:</label>
+                    <select id="chapterSelect" class="modal-select"></select>
+                </div>
+                <div id="topicSelectGroup" class="modal-input-group hidden">
+                    <label>اختر الموضوع:</label>
+                    <select id="topicSelect" class="modal-select"></select>
+                </div>
+            </div>
+            <div class="modal-buttons danger">
+                <button id="confirmDelete" class="primary-btn">حذف</button>
+                <button id="cancelDelete" class="secondary-btn cancel-delete">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

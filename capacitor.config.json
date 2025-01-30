@@ -1,0 +1,8 @@
+{
+  "appId": "com.studyprogress.app",
+  "appName": "Study Progress",
+  "webDir": ".",
+  "server": {
+    "androidScheme": "file"
+  }
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Study Progress</string>
+    <string name="title_activity_main">Study Progress</string>
+    <string name="package_name">com.studyprogress.app</string>
+    <string name="custom_url_scheme">com.studyprogress.app</string>
+</resources>
