@@ -1,22 +1,62 @@
 {
+  "id": "study-progress",
   "name": "Study Progress",
   "short_name": "Study Progress",
   "description": "تطبيق لتتبع تقدم الدراسة",
   "start_url": "./",
   "display": "standalone",
+  "display_override": ["window-controls-overlay"],
   "background_color": "#ffffff",
   "theme_color": "#4CAF50",
+  "orientation": "any",
+  "launch_handler": {
+    "client_mode": ["focus-existing", "auto"]
+  },
   "icons": [
     {
-      "src": "icon-512.png",
+      "src": "icons/icon.svg",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "purpose": "any"
     }
   ],
-  "orientation": "any",
+  "screenshots": [
+    {
+      "src": "screenshots/screen1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "الشاشة الرئيسية للتطبيق"
+    }
+  ],
+  "categories": ["education", "productivity"],
   "dir": "rtl",
   "lang": "ar",
+  "prefer_related_applications": false,
   "scope": "./",
-  "categories": ["education", "productivity"]
+  "iarc_rating_id": "e84b4b28-6ce1-4c7b-96e1-645b6f8e8d0c",
+  "related_applications": [],
+  "scope_extensions": [{"origin": "*.study-progress.app"}],
+  "background_sync": {
+    "periodic": true,
+    "min_interval": 60
+  },
+  "notifications": {
+    "vibrate": true,
+    "actions": true,
+    "badge": true,
+    "sound": true
+  },
+  "permissions": [
+    "notifications",
+    "background-sync",
+    "periodic-background-sync"
+  ],
+  "shortcuts": [
+    {
+      "name": "إضافة مادة جديدة",
+      "url": "./?action=add",
+      "description": "إضافة مادة دراسية جديدة"
+    }
+  ]
 }
