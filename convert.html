@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convert SVG to PNG</title>
+</head>
+<body>
+    <canvas id="canvas" width="512" height="512" style="display:none;"></canvas>
+    <img id="book" width="512" height="512" style="background:white;">
+    <script>
+        const svg = `<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <rect width="512" height="512" fill="#4CAF50"/>
+            <circle cx="256" cy="256" r="200" fill="#ffffff"/>
+            <text x="256" y="320" font-size="200" text-anchor="middle" fill="#4CAF50">📚</text>
+        </svg>`;
+        
+        const img = document.getElementById('book');
+        img.src = 'data:image/svg+xml;base64,' + btoa(svg);
+        
+        img.onload = function() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, 512, 512);
+            
+            // Save 512x512
+            const link512 = document.createElement('a');
+            link512.download = 'icon-512.png';
+            link512.href = canvas.toDataURL('image/png');
+            link512.click();
+            
+            // Save 192x192
+            canvas.width = 192;
+            canvas.height = 192;
+            ctx.drawImage(img, 0, 0, 192, 192);
+            const link192 = document.createElement('a');
+            link192.download = 'icon-192.png';
+            link192.href = canvas.toDataURL('image/png');
+            link192.click();
+        };
+    </script>
+</body>
+</html>
