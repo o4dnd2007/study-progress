@@ -4,13 +4,8 @@
   "description": "Study Progress Tracking App",
   "main": "index.html",
   "scripts": {
-    "start": "npx cap serve",
-    "build": "npx cap sync",
-    "android": "npx cap open android"
+    "start": "npx serve ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@capacitor/android": "^5.0.0",
     "@capacitor/core": "^5.0.0"
