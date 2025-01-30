@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+    <rect width="512" height="512" fill="#ffffff" rx="100"/>
+    <path d="M256 50 C150 50 100 100 100 150 V400 C100 450 150 500 256 500 C362 500 412 450 412 400 V150 C412 100 362 50 256 50 Z" fill="#FF7B7B"/>
+    <path d="M256 75 C150 75 125 125 125 150 V375 C125 400 150 450 256 450 C362 450 387 400 387 375 V150 C387 125 362 75 256 75 Z" fill="#FFE2E2"/>
+    <path d="M256 100 C150 100 150 150 150 150 V350 C150 350 150 400 256 400 C362 400 362 350 362 350 V150 C362 150 362 100 256 100 Z" fill="#FFFFFF"/>
+    <g fill="#6B4B4B">
+        <circle cx="200" cy="200" r="10"/>
+        <circle cx="250" cy="250" r="10"/>
+        <circle cx="300" cy="180" r="10"/>
+        <circle cx="270" cy="220" r="10"/>
+        <circle cx="220" cy="170" r="10"/>
+        <path d="M180 230 L220 230 L200 260 Z"/>
+    </g>
+</svg>
