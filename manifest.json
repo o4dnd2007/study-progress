@@ -119,6 +119,17 @@
     "periodic": true,
     "min_interval": 60
   },
+  "notifications": {
+    "vibrate": true,
+    "actions": true,
+    "badge": true,
+    "sound": true
+  },
+  "permissions": [
+    "notifications",
+    "background-sync",
+    "periodic-background-sync"
+  ],
   "shortcuts": [
     {
       "name": "إضافة مادة جديدة",

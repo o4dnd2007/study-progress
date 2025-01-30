@@ -53,23 +53,92 @@ self.addEventListener('fetch', event => {
   );
 });
 
+// التعامل مع الإشعارات
+self.addEventListener('push', event => {
+  const options = {
+    body: event.data.text(),
+    icon: './icons/icon_x192.png',
+    badge: './icons/icon_x48.png',
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: 1
+    },
+    actions: [
+      {
+        action: 'explore',
+        title: 'فتح التطبيق',
+        icon: './icons/icon_x48.png'
+      }
+    ]
+  };
+
+  event.waitUntil(
+    self.registration.showNotification('Study Progress', options)
+  );
+});
+
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow('/')
+  );
+});
+
 // المزامنة في الخلفية
 self.addEventListener('sync', event => {
   if (event.tag === 'sync-data') {
-    event.waitUntil(syncData());
+    event.waitUntil(
+      syncData().catch(err => {
+        // إعادة المحاولة لاحقاً
+        return registration.sync.register('sync-data');
+      })
+    );
   }
 });
 
 // المزامنة الدورية
 self.addEventListener('periodicsync', event => {
   if (event.tag === 'sync-data') {
-    event.waitUntil(syncData());
+    event.waitUntil(
+      syncData().catch(err => {
+        console.error('Periodic sync failed:', err);
+      })
+    );
   }
 });
 
 // دالة المزامنة
 async function syncData() {
-  const data = await getAllData();
-  // حفظ البيانات محلياً
-  await saveToLocalStorage(data);
+  try {
+    const data = await getAllData();
+    await saveToLocalStorage(data);
+    
+    // إرسال إشعار بنجاح المزامنة
+    await self.registration.showNotification('Study Progress', {
+      body: 'تمت مزامنة البيانات بنجاح',
+      icon: './icons/icon_x192.png',
+      badge: './icons/icon_x48.png'
+    });
+  } catch (error) {
+    console.error('Sync failed:', error);
+    throw error;
+  }
+}
+
+// الحصول على جميع البيانات
+async function getAllData() {
+  const data = {
+    subjects: JSON.parse(localStorage.getItem('subjects') || '[]'),
+    chapters: JSON.parse(localStorage.getItem('chapters') || '[]'),
+    topics: JSON.parse(localStorage.getItem('topics') || '[]')
+  };
+  return data;
+}
+
+// حفظ البيانات في التخزين المحلي
+async function saveToLocalStorage(data) {
+  localStorage.setItem('subjects', JSON.stringify(data.subjects));
+  localStorage.setItem('chapters', JSON.stringify(data.chapters));
+  localStorage.setItem('topics', JSON.stringify(data.topics));
 }
