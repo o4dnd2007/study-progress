@@ -9,6 +9,9 @@
   "background_color": "#ffffff",
   "theme_color": "#4CAF50",
   "orientation": "any",
+  "launch_handler": {
+    "client_mode": ["focus-existing", "auto"]
+  },
   "icons": [
     {
       "src": "icons/maskable_icon_x48.png",
@@ -109,7 +112,13 @@
   "lang": "ar",
   "prefer_related_applications": false,
   "scope": "./",
-  "iarc_rating_id": "",
+  "iarc_rating_id": "e84b4b28-6ce1-4c7b-96e1-645b6f8e8d0c",
+  "related_applications": [],
+  "scope_extensions": [{"origin": "*.study-progress.app"}],
+  "background_sync": {
+    "periodic": true,
+    "min_interval": 60
+  },
   "shortcuts": [
     {
       "name": "إضافة مادة جديدة",
